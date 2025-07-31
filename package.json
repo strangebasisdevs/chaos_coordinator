@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write .",
-    "commit": "cz"
+    "commit": "cz",
+    "update-submodules": "git submodule update --remote --merge",
+    "update-games": "npm run update-submodules && echo \"✅ Game projects updated from remote repositories\""
   },
   "config": {
     "commitizen": {

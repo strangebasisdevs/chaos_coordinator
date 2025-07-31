@@ -1,0 +1,3 @@
+[submodule "public/games/time_decomposes"]
+	path = public/games/time_decomposes
+	url = https://github.com/strangebasisdevs/time_decomposes.git

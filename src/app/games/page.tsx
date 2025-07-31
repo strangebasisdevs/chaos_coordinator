@@ -2,60 +2,14 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { Game } from '@/types';
-
-// Placeholder games - replace with your actual games
-const games: Game[] = [
-  {
-    id: '1',
-    title: 'Chaos Patterns',
-    description:
-      'An interactive generative art piece that responds to your input.',
-    category: 'art',
-    playUrl: '#',
-    embedUrl: '#',
-    controls: ['Mouse movement', 'Click to generate', 'Space for new pattern'],
-  },
-  {
-    id: '2',
-    title: 'Code Puzzle Adventure',
-    description: 'Solve programming puzzles in this interactive coding game.',
-    category: 'puzzle',
-    playUrl: '#',
-    embedUrl: '#',
-    controls: ['Arrow keys', 'Enter to submit', 'R to reset'],
-  },
-  {
-    id: '3',
-    title: 'Rhythm Chaos',
-    description: 'A music-based arcade game with procedural audio.',
-    category: 'arcade',
-    playUrl: '#',
-    embedUrl: '#',
-    controls: ['WASD or Arrow keys', 'Spacebar to jump', 'Mouse for special'],
-  },
-  {
-    id: '4',
-    title: 'Experimental Proto',
-    description: 'A prototype exploring new interaction mechanics.',
-    category: 'experimental',
-    playUrl: '#',
-    controls: ['Various - instructions in game'],
-  },
-];
-
-const categories = [
-  { key: 'all', label: 'All Games' },
-  { key: 'puzzle', label: 'Puzzle' },
-  { key: 'arcade', label: 'Arcade' },
-  { key: 'art', label: 'Interactive Art' },
-  { key: 'experimental', label: 'Experimental' },
-];
+import { getGames, gameCategories, type UnifiedProject } from '@/data/projects';
+import GameEmbed from '@/components/GameEmbed';
 
 export default function Games() {
   const [activeCategory, setActiveCategory] = useState('all');
-  const [selectedGame, setSelectedGame] = useState<Game | null>(null);
+  const [selectedGame, setSelectedGame] = useState<UnifiedProject | null>(null);
 
+  const games = getGames();
   const filteredGames = games.filter(
     (game) => activeCategory === 'all' || game.category === activeCategory
   );
@@ -100,7 +54,7 @@ export default function Games() {
 
         {/* Category Filter */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category) => (
+          {gameCategories.map((category) => (
             <button
               key={category.key}
               onClick={() => setActiveCategory(category.key)}
@@ -131,16 +85,11 @@ export default function Games() {
             </div>
 
             {/* Game Embed Area */}
-            <div className="bg-black/30 rounded-lg h-96 flex items-center justify-center mb-4">
-              <div className="text-center text-gray-300">
-                <div className="text-4xl mb-4">🎮</div>
-                <p>Game would be embedded here</p>
-                <p className="text-sm mt-2">
-                  In a real implementation, this would be an iframe or canvas
-                  element
-                </p>
-              </div>
-            </div>
+            <GameEmbed 
+              game={selectedGame} 
+              className="mb-4"
+              showHeader={false}
+            />
 
             {/* Game Info */}
             <div className="grid md:grid-cols-2 gap-6">
@@ -150,18 +99,20 @@ export default function Games() {
                 </h3>
                 <p className="text-gray-300">{selectedGame.description}</p>
               </div>
-              <div>
-                <h3 className="text-lg font-semibold text-white mb-2">
-                  Controls
-                </h3>
-                <ul className="text-gray-300">
-                  {selectedGame.controls.map((control, index) => (
-                    <li key={index} className="mb-1">
-                      • {control}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              {selectedGame.controls && selectedGame.controls.length > 0 && (
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-2">
+                    Controls
+                  </h3>
+                  <ul className="text-gray-300">
+                    {selectedGame.controls.map((control, index) => (
+                      <li key={index} className="mb-1">
+                        • {control}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -202,12 +153,14 @@ export default function Games() {
                   >
                     Play Here
                   </button>
-                  <Link
-                    href={game.playUrl}
-                    className="flex-1 border border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white text-center py-2 rounded-lg font-semibold transition-colors"
-                  >
-                    Full Screen
-                  </Link>
+                  {game.playUrl && (
+                    <Link
+                      href={game.playUrl}
+                      className="flex-1 border border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white text-center py-2 rounded-lg font-semibold transition-colors"
+                    >
+                      Game Page
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>

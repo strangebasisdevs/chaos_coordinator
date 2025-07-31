@@ -2,65 +2,14 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { Project } from '@/types';
-
-// Placeholder projects - replace with your actual projects
-const projects: Project[] = [
-  {
-    id: '1',
-    title: 'Interactive Web Game',
-    description:
-      'A browser-based puzzle game built with JavaScript and Canvas API.',
-    category: 'game',
-    technologies: ['JavaScript', 'Canvas API', 'Web Audio API'],
-    imageUrl: '/placeholder-game.jpg',
-    demoUrl: '#',
-    githubUrl: '#',
-  },
-  {
-    id: '2',
-    title: 'Generative Art Project',
-    description:
-      'Algorithmic art piece that creates unique patterns using p5.js.',
-    category: 'art',
-    technologies: ['p5.js', 'TypeScript', 'WebGL'],
-    imageUrl: '/placeholder-art.jpg',
-    demoUrl: '#',
-    githubUrl: '#',
-  },
-  {
-    id: '3',
-    title: 'Portfolio Website',
-    description:
-      'Responsive portfolio website built with Next.js and Tailwind CSS.',
-    category: 'web',
-    technologies: ['Next.js', 'TypeScript', 'Tailwind CSS'],
-    imageUrl: '/placeholder-web.jpg',
-    demoUrl: '#',
-    githubUrl: '#',
-  },
-  {
-    id: '4',
-    title: 'Game Development Tool',
-    description: 'Custom tool for level design and asset management.',
-    category: 'tool',
-    technologies: ['Node.js', 'Electron', 'React'],
-    imageUrl: '/placeholder-tool.jpg',
-    githubUrl: '#',
-  },
-];
-
-const categories = [
-  { key: 'all', label: 'All Projects' },
-  { key: 'web', label: 'Web Development' },
-  { key: 'game', label: 'Games' },
-  { key: 'art', label: 'Digital Art' },
-  { key: 'tool', label: 'Tools' },
-];
+import { getProjects, portfolioCategories, type UnifiedProject } from '@/data/projects';
+import GameEmbed from '@/components/GameEmbed';
 
 export default function Portfolio() {
   const [activeCategory, setActiveCategory] = useState('all');
-
+  const [selectedProject, setSelectedProject] = useState<UnifiedProject | null>(null);
+  
+  const projects = getProjects();
   const filteredProjects = projects.filter(
     (project) => activeCategory === 'all' || project.category === activeCategory
   );
@@ -105,7 +54,7 @@ export default function Portfolio() {
 
         {/* Category Filter */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category) => (
+          {portfolioCategories.map((category) => (
             <button
               key={category.key}
               onClick={() => setActiveCategory(category.key)}
@@ -119,6 +68,71 @@ export default function Portfolio() {
             </button>
           ))}
         </div>
+
+        {/* Featured Project Display */}
+        {selectedProject && (
+          <div className="mb-12 bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-2xl font-bold text-white">
+                {selectedProject.title}
+              </h2>
+              <button
+                onClick={() => setSelectedProject(null)}
+                className="text-gray-400 hover:text-white"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Project Embed Area - Only show iframe for interactive projects */}
+            {(selectedProject.embedUrl || selectedProject.playUrl) && (
+              <GameEmbed 
+                game={selectedProject} 
+                className="mb-4"
+                showHeader={false}
+              />
+            )}
+
+            {/* Project Info */}
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h3 className="text-lg font-semibold text-white mb-2">
+                  Description
+                </h3>
+                <p className="text-gray-300">{selectedProject.description}</p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-white mb-2">
+                  Technologies
+                </h3>
+                {selectedProject.technologies && selectedProject.technologies.length > 0 && (
+                  <div className="flex flex-wrap gap-2">
+                    {selectedProject.technologies.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-3 py-1 bg-purple-600/30 text-purple-200 text-sm rounded-full"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                )}
+                {selectedProject.controls && selectedProject.controls.length > 0 && (
+                  <div className="mt-4">
+                    <h4 className="text-sm font-medium text-white mb-2">Controls:</h4>
+                    <ul className="text-gray-300 text-sm">
+                      {selectedProject.controls.map((control, index) => (
+                        <li key={index} className="mb-1">
+                          • {control}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -138,33 +152,47 @@ export default function Portfolio() {
                 <h3 className="text-xl font-bold text-white mb-2">
                   {project.title}
                 </h3>
-                <p className="text-gray-300 mb-4">{project.description}</p>
+                <p className="text-gray-300 mb-4">
+                  {project.shortDescription || project.description}
+                </p>
 
                 {/* Technologies */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-3 py-1 bg-purple-600/30 text-purple-200 text-sm rounded-full"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
+                {project.technologies && project.technologies.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.technologies.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-3 py-1 bg-purple-600/30 text-purple-200 text-sm rounded-full"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                )}
 
                 {/* Action Buttons */}
                 <div className="flex gap-3">
+                  {(project.embedUrl || project.playUrl) && (
+                    <button
+                      onClick={() => setSelectedProject(project)}
+                      className="flex-1 bg-green-600 hover:bg-green-700 text-white text-center py-2 rounded-lg font-semibold transition-colors"
+                    >
+                      Preview
+                    </button>
+                  )}
                   {project.demoUrl && (
                     <Link
                       href={project.demoUrl}
                       className="flex-1 bg-purple-600 hover:bg-purple-700 text-white text-center py-2 rounded-lg font-semibold transition-colors"
                     >
-                      View Demo
+                      Game Page
                     </Link>
                   )}
-                  {project.githubUrl && (
+                  {project.githubUrl && project.githubUrl !== '#' && (
                     <Link
                       href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="flex-1 border border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white text-center py-2 rounded-lg font-semibold transition-colors"
                     >
                       GitHub
