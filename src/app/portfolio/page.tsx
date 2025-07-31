@@ -2,17 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-
-interface Project {
-  id: string;
-  title: string;
-  description: string;
-  category: 'web' | 'game' | 'art' | 'tool';
-  technologies: string[];
-  imageUrl: string;
-  demoUrl?: string;
-  githubUrl?: string;
-}
+import { Project } from '@/types';
 
 // Placeholder projects - replace with your actual projects
 const projects: Project[] = [

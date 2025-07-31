@@ -1,19 +1,5 @@
 import Link from 'next/link';
-
-interface StreamingPlatform {
-  name: string;
-  url: string;
-  description: string;
-  icon: string;
-}
-
-interface ContentSeries {
-  title: string;
-  description: string;
-  episodes: number;
-  category: 'tutorial' | 'gameplay' | 'dev-log' | 'art';
-  thumbnail: string;
-}
+import { StreamingPlatform, ContentSeries } from '@/types';
 
 const platforms: StreamingPlatform[] = [
   {

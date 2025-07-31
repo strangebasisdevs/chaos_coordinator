@@ -73,8 +73,6 @@ src/
 │   ├── portfolio/        # Portfolio showcase page
 │   ├── games/           # Interactive games and art
 │   └── streaming/       # Content creation and streaming
-├── components/          # Reusable UI components
-├── lib/                # Utility functions
 └── types/              # TypeScript type definitions
 ```
 

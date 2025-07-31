@@ -2,16 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-
-interface Game {
-  id: string;
-  title: string;
-  description: string;
-  category: 'puzzle' | 'arcade' | 'art' | 'experimental';
-  playUrl: string;
-  embedUrl?: string;
-  controls: string[];
-}
+import { Game } from '@/types';
 
 // Placeholder games - replace with your actual games
 const games: Game[] = [
