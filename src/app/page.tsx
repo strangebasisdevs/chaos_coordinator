@@ -10,19 +10,19 @@ export default function Home() {
         </div>
         <div className="hidden md:flex space-x-6 text-white">
           <Link
-            href="#portfolio"
+            href="/portfolio"
             className="hover:text-purple-400 transition-colors"
           >
             Portfolio
           </Link>
           <Link
-            href="#games"
+            href="/games"
             className="hover:text-purple-400 transition-colors"
           >
             Games
           </Link>
           <Link
-            href="#streaming"
+            href="/streaming"
             className="hover:text-purple-400 transition-colors"
           >
             Streaming
@@ -50,13 +50,13 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="#portfolio"
+              href="/portfolio"
               className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
             >
               View Portfolio
             </Link>
             <Link
-              href="#games"
+              href="/games"
               className="border border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors"
             >
               Play Games
