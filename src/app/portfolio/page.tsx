@@ -90,6 +90,7 @@ export default function Portfolio() {
                 game={selectedProject} 
                 className="mb-4"
                 showHeader={false}
+                previewMode={true}
               />
             )}
 

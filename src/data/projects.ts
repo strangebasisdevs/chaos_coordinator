@@ -30,7 +30,7 @@ export const unifiedProjects: UnifiedProject[] = [
     imageUrl: '/placeholder-art.jpg',
     demoUrl: '/games/time_decomposes',
     playUrl: '/games/time_decomposes',
-    embedUrl: '/games/time_decomposes/index.html', // Direct path to the HTML file for iframe
+    embedUrl: '/games/time_decomposes/index.html', // Original version preserves all UI elements
     githubUrl: 'https://github.com/strangebasisdevs/time_decomposes',
     controls: ['Mouse movement', 'Click to interact'],
     featured: true,

@@ -89,6 +89,7 @@ export default function Games() {
               game={selectedGame} 
               className="mb-4"
               showHeader={false}
+              previewMode={true}
             />
 
             {/* Game Info */}
