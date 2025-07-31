@@ -74,7 +74,7 @@ export default function GameEmbed({ game, className = '', showHeader = true, pre
   };
 
   return (
-    <div className={`bg-white/10 backdrop-blur-lg rounded-xl overflow-hidden border border-white/20 ${className}`}
+    <div className={`bg-white/10 backdrop-blur-lg rounded-xl overflow-hidden border border-white/20 relative ${className}`}
          style={{
            // Performance optimizations for container
            contain: 'layout style paint', // CSS containment for performance
@@ -124,6 +124,34 @@ export default function GameEmbed({ game, className = '', showHeader = true, pre
             )}
           </div>
         </div>
+      )}
+      
+      {/* Preview Mode Full Game Link - positioned over iframe */}
+      {previewMode && (game.playUrl && game.playUrl !== '#') && (
+        <>
+          <div className="absolute top-4 right-4 z-10">
+            <a
+              href={game.playUrl}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-sm font-semibold rounded-lg transition-colors shadow-lg backdrop-blur-sm"
+              title="Open full game page"
+            >
+              <span>🎮</span>
+              <span>Play Full Game</span>
+              <span>→</span>
+            </a>
+          </div>
+          
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-10">
+            <a
+              href={game.playUrl}
+              className="inline-flex items-center gap-2 px-3 py-2 bg-black/70 hover:bg-black/90 text-white text-xs font-medium rounded-full transition-colors shadow-lg backdrop-blur-sm border border-white/20"
+              title="Open full game page"
+            >
+              <span>View Full Game</span>
+              <span>↗</span>
+            </a>
+          </div>
+        </>
       )}
       
       <iframe
