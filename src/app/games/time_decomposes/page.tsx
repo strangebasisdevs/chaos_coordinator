@@ -62,7 +62,7 @@ export default function TimeDecomposesGame() {
         </div>
 
         {/* Game Container */}
-        <div className="flex justify-center">
+        <div className="max-w-6xl mx-auto">
           <GameEmbed 
             game={timeDecomposesProject}
             className="shadow-2xl"
