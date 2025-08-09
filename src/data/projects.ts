@@ -48,11 +48,11 @@ export const unifiedProjects: UnifiedProject[] = [
   {
     id: 'portfolio_website',
     title: 'Portfolio Website',
-    description: 'Responsive portfolio website built with Next.js and Tailwind CSS.',
+    description: 'The official strangebasis Chaos Coordinator. A portfolio and company website built with Next.js and Tailwind CSS. This website.',
     category: 'web',
     technologies: ['Next.js', 'TypeScript', 'Tailwind CSS'],
     imageUrl: '/placeholder-web.jpg',
-    demoUrl: '#',
+    demoUrl: '/',
     githubUrl: '#',
   },
   {
