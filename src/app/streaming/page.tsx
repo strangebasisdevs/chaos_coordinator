@@ -76,16 +76,10 @@ export default function Streaming() {
             Home
           </Link>
           <Link
-            href="/portfolio"
+            href="/projects"
             className="hover:text-purple-400 transition-colors"
           >
-            Portfolio
-          </Link>
-          <Link
-            href="/games"
-            className="hover:text-purple-400 transition-colors"
-          >
-            Games
+            Projects
           </Link>
         </div>
       </nav>

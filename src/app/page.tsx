@@ -10,16 +10,10 @@ export default function Home() {
         </div>
         <div className="hidden md:flex space-x-6 text-white">
           <Link
-            href="/portfolio"
+            href="/projects"
             className="hover:text-purple-400 transition-colors"
           >
-            Portfolio
-          </Link>
-          <Link
-            href="/games"
-            className="hover:text-purple-400 transition-colors"
-          >
-            Games
+            Projects
           </Link>
           <Link
             href="/streaming"
@@ -50,57 +44,39 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/portfolio"
+              href="/projects"
               className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
             >
-              View Portfolio
+              View Projects
             </Link>
             <Link
-              href="/games"
+              href="/projects"
               className="border border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors"
             >
-              Play Games
+              Explore Projects
             </Link>
           </div>
         </div>
 
         {/* Featured Sections */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
-          {/* Portfolio Section */}
+        <div className="grid md:grid-cols-2 gap-8 mb-16">
+          {/* Projects Section */}
           <div
-            id="portfolio"
+            id="projects"
             className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20"
           >
-            <div className="text-4xl mb-4">🎨</div>
-            <h3 className="text-2xl font-bold text-white mb-4">Portfolio</h3>
+            <div className="text-4xl mb-4">💼</div>
+            <h3 className="text-2xl font-bold text-white mb-4">Projects & Interactive Experiences</h3>
             <p className="text-gray-300 mb-6">
-              Explore my creative projects, web applications, and digital art
-              pieces that showcase technical skill and artistic vision.
+              Explore our creative projects, web applications, interactive experiences, and digital projects
+              that showcase technical skill and artistic vision. From games to tools, all designed with 
+              accessibility and user experience in mind.
             </p>
             <Link
-              href="/portfolio"
+              href="/projects"
               className="text-purple-400 hover:text-purple-300 font-semibold"
             >
               View All Projects →
-            </Link>
-          </div>
-
-          {/* Games Section */}
-          <div
-            id="games"
-            className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20"
-          >
-            <div className="text-4xl mb-4">🎮</div>
-            <h3 className="text-2xl font-bold text-white mb-4">Web Games</h3>
-            <p className="text-gray-300 mb-6">
-              Interactive games and coding art projects that run directly in
-              your browser. Experience the intersection of art and technology.
-            </p>
-            <Link
-              href="/games"
-              className="text-purple-400 hover:text-purple-300 font-semibold"
-            >
-              Play Games →
             </Link>
           </div>
 
@@ -114,8 +90,12 @@ export default function Home() {
               Content Creation
             </h3>
             <p className="text-gray-300 mb-6">
-              Follow my journey in game development, coding tutorials, and
-              creative content across streaming platforms and video creation.
+              Follow my journey in game development, asuaging my gaming addictions,
+              creating music, videos, and whatever strikes me in the moment. You can
+              find my content on <a href="https://www.twitch.tv/strangebasis">Twitch</a>
+              and <a href="https://www.youtube.com/@strangebasis">YouTube</a>. Check
+              out my <a href="https://bsky.app/profile/strangebasis.co">BlueSky</a> for
+              updates and strangebasis co news day to day.
             </p>
             <Link
               href="/streaming"
@@ -129,13 +109,14 @@ export default function Home() {
         {/* Company Section */}
         <div className="text-center bg-white/5 backdrop-blur-lg rounded-xl p-8 border border-white/20">
           <h2 className="text-3xl font-bold text-white mb-4">
-            About strangebasis
+            About strangebasis co
           </h2>
           <p className="text-gray-300 max-w-4xl mx-auto leading-relaxed">
-            strangebasis is my creative company focused on innovative game
-            design, interactive media, and content creation. We explore the
-            boundaries between art, technology, and storytelling to create
-            unique digital experiences.
+            strangebasis co is my creative company focused on innovation and
+            inclusion within game design, interactive media, and content creation.
+            We explore the boundaries between art, technology, and storytelling to
+            aim at creating a universally accessible experience. Our mission is to inspire
+            curiosity and foster a community of diverse creators and innovators.
           </p>
         </div>
       </main>

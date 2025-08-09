@@ -2,14 +2,14 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { getProjects, portfolioCategories, type UnifiedProject } from '@/data/projects';
+import { getAllProjects, projectCategories, type UnifiedProject } from '@/data/projects';
 import GameEmbed from '@/components/GameEmbed';
 
-export default function Portfolio() {
+export default function Projects() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedProject, setSelectedProject] = useState<UnifiedProject | null>(null);
   
-  const projects = getProjects();
+  const projects = getAllProjects(); // Get all projects including games
   const filteredProjects = projects.filter(
     (project) => activeCategory === 'all' || project.category === activeCategory
   );
@@ -26,12 +26,6 @@ export default function Portfolio() {
             Home
           </Link>
           <Link
-            href="/games"
-            className="hover:text-purple-400 transition-colors"
-          >
-            Games
-          </Link>
-          <Link
             href="/streaming"
             className="hover:text-purple-400 transition-colors"
           >
@@ -44,17 +38,18 @@ export default function Portfolio() {
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
-            My Portfolio
+            Projects & Interactive Experiences
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            A collection of projects showcasing my skills in web development,
-            game design, digital art, and creative coding.
+            A comprehensive collection of web applications, interactive experiences, 
+            development tools, and creative projects that demonstrate our technical 
+            capabilities and innovative approach to problem-solving.
           </p>
         </div>
 
         {/* Category Filter */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {portfolioCategories.map((category) => (
+          {projectCategories.map((category) => (
             <button
               key={category.key}
               onClick={() => setActiveCategory(category.key)}

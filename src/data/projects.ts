@@ -15,7 +15,6 @@ export interface UnifiedProject {
   githubUrl?: string;
   controls?: string[];
   featured?: boolean;
-  type: 'project' | 'game' | 'both'; // Determines where it appears
 }
 
 // Master data source - single source of truth
@@ -28,13 +27,12 @@ export const unifiedProjects: UnifiedProject[] = [
     category: 'art',
     technologies: ['p5.js', 'JavaScript', 'L-systems', 'Cellular Automata'],
     imageUrl: '/placeholder-art.jpg',
-    demoUrl: '/games/time_decomposes',
-    playUrl: '/games/time_decomposes',
+    demoUrl: '/projects/time_decomposes',
+    playUrl: '/projects/time_decomposes',
     embedUrl: '/games/time_decomposes/index.html', // Original version preserves all UI elements
     githubUrl: 'https://github.com/strangebasisdevs/time_decomposes',
     controls: ['Mouse movement', 'Click to interact'],
     featured: true,
-    type: 'both',
   },
   // Placeholder projects for demonstration
   {
@@ -46,7 +44,6 @@ export const unifiedProjects: UnifiedProject[] = [
     imageUrl: '/placeholder-game.jpg',
     demoUrl: '#',
     githubUrl: '#',
-    type: 'project',
   },
   {
     id: 'portfolio_website',
@@ -57,7 +54,6 @@ export const unifiedProjects: UnifiedProject[] = [
     imageUrl: '/placeholder-web.jpg',
     demoUrl: '#',
     githubUrl: '#',
-    type: 'project',
   },
   {
     id: 'game_dev_tool',
@@ -67,7 +63,6 @@ export const unifiedProjects: UnifiedProject[] = [
     technologies: ['Node.js', 'Electron', 'React'],
     imageUrl: '/placeholder-tool.jpg',
     githubUrl: '#',
-    type: 'project',
   },
   {
     id: 'code_puzzle_adventure',
@@ -79,7 +74,6 @@ export const unifiedProjects: UnifiedProject[] = [
     playUrl: '#',
     embedUrl: '#',
     controls: ['Arrow keys', 'Enter to submit', 'R to reset'],
-    type: 'game',
   },
   {
     id: 'rhythm_chaos',
@@ -91,7 +85,6 @@ export const unifiedProjects: UnifiedProject[] = [
     playUrl: '#',
     embedUrl: '#',
     controls: ['WASD or Arrow keys', 'Spacebar to jump', 'Mouse for special'],
-    type: 'game',
   },
   {
     id: 'experimental_proto',
@@ -102,22 +95,24 @@ export const unifiedProjects: UnifiedProject[] = [
     imageUrl: '/placeholder-experimental.jpg',
     playUrl: '#',
     controls: ['Various - instructions in game'],
-    type: 'game',
   },
 ];
 
 // Helper functions to filter data for specific pages
 export const getProjects = () => 
-  unifiedProjects.filter(item => item.type === 'project' || item.type === 'both');
+  unifiedProjects.filter(item => ['web', 'tool'].includes(item.category));
 
 export const getGames = () => 
-  unifiedProjects.filter(item => item.type === 'game' || item.type === 'both');
+  unifiedProjects.filter(item => ['game', 'puzzle', 'arcade', 'experimental'].includes(item.category));
+
+export const getAllProjects = () => 
+  unifiedProjects; // Return all projects including games for the projects page
 
 export const getFeaturedProjects = () => 
-  unifiedProjects.filter(item => item.featured && (item.type === 'project' || item.type === 'both'));
+  unifiedProjects.filter(item => item.featured);
 
 export const getFeaturedGames = () => 
-  unifiedProjects.filter(item => item.featured && (item.type === 'game' || item.type === 'both'));
+  unifiedProjects.filter(item => item.featured && ['game', 'puzzle', 'arcade', 'experimental', 'art'].includes(item.category));
 
 // Category mappings
 export const portfolioCategories = [
@@ -126,6 +121,17 @@ export const portfolioCategories = [
   { key: 'game', label: 'Games' },
   { key: 'art', label: 'Digital Art' },
   { key: 'tool', label: 'Tools' },
+];
+
+export const projectCategories = [
+  { key: 'all', label: 'All Projects' },
+  { key: 'web', label: 'Web Development' },
+  { key: 'game', label: 'Interactive Games' },
+  { key: 'art', label: 'Digital Art' },
+  { key: 'tool', label: 'Development Tools' },
+  { key: 'puzzle', label: 'Puzzle Games' },
+  { key: 'arcade', label: 'Arcade Games' },
+  { key: 'experimental', label: 'Experimental' },
 ];
 
 export const gameCategories = [
