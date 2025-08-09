@@ -1,10 +1,10 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import type { UnifiedProject } from '@/data/projects';
+import type { Project } from '@/data/projects';
 
 interface GameEmbedProps {
-  game: UnifiedProject;
+  game: Project;
   className?: string;
   showHeader?: boolean;
   previewMode?: boolean; // New prop for preview optimization

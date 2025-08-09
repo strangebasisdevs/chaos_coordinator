@@ -2,12 +2,12 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { getAllProjects, projectCategories, type UnifiedProject } from '@/data/projects';
+import { getAllProjects, projectCategories, type Project } from '@/data/projects';
 import GameEmbed from '@/components/GameEmbed';
 
 export default function Projects() {
   const [activeCategory, setActiveCategory] = useState('all');
-  const [selectedProject, setSelectedProject] = useState<UnifiedProject | null>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   
   const projects = getAllProjects(); // Get all projects including games
   const filteredProjects = projects.filter(

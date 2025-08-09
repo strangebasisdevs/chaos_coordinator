@@ -1,7 +1,7 @@
 // Centralized data source for projects and games
 // This ensures consistency across portfolio and games sections
 
-export interface UnifiedProject {
+export interface Project {
   id: string;
   title: string;
   description: string;
@@ -9,6 +9,7 @@ export interface UnifiedProject {
   category: 'web' | 'game' | 'art' | 'tool' | 'puzzle' | 'arcade' | 'experimental';
   technologies?: string[];
   imageUrl?: string;
+  imageAltText?: string;
   demoUrl?: string;
   playUrl?: string;
   embedUrl?: string;
@@ -17,8 +18,27 @@ export interface UnifiedProject {
   featured?: boolean;
 }
 
+export interface StreamingPlatform {
+  name: string;
+  url: string;
+  description: string;
+  icon: string;
+  isLive?: boolean;
+  alt_text: string;
+}
+
+export interface ContentSeries {
+  title: string;
+  description: string;
+  episodes: number;
+  category: 'tutorial' | 'gameplay' | 'dev-log' | 'art';
+  thumbnail: string;
+  alt_text: string;
+  playlistUrl?: string;
+}
+
 // Master data source - single source of truth
-export const unifiedProjects: UnifiedProject[] = [
+export const projects: Project[] = [
   {
     id: 'time_decomposes',
     title: 'Time Decomposes',
@@ -26,7 +46,8 @@ export const unifiedProjects: UnifiedProject[] = [
     shortDescription: 'Interactive mushroom growth simulator using L-systems and cellular automata.',
     category: 'art',
     technologies: ['p5.js', 'JavaScript', 'L-systems', 'Cellular Automata'],
-    imageUrl: '/placeholder-art.jpg',
+    imageUrl: 'TODO: add image URL',
+    imageAltText: 'TODO: add alt text for image',
     demoUrl: '/projects/time_decomposes',
     playUrl: '/projects/time_decomposes',
     embedUrl: '/games/time_decomposes/index.html', // Original version preserves all UI elements
@@ -41,14 +62,15 @@ export const unifiedProjects: UnifiedProject[] = [
     description: 'A browser-based puzzle game built with JavaScript and Canvas API.',
     category: 'game',
     technologies: ['JavaScript', 'Canvas API', 'Web Audio API'],
-    imageUrl: '/placeholder-game.jpg',
+    imageUrl: 'TODO: add image URL',
+    imageAltText: 'TODO: add alt text for image',
     demoUrl: '#',
     githubUrl: '#',
   },
   {
-    id: 'portfolio_website',
-    title: 'Portfolio Website',
-    description: 'The official strangebasis Chaos Coordinator. A portfolio and company website built with Next.js and Tailwind CSS. This website.',
+    id: 'chaos_coordinator',
+    title: 'Chaos Coordinator',
+    description: 'The official StrangeBasis Co Chaos Coordinator. A portfolio and company website built with Next.js and Tailwind CSS. This website.',
     category: 'web',
     technologies: ['Next.js', 'TypeScript', 'Tailwind CSS'],
     imageUrl: '/placeholder-web.jpg',
@@ -100,19 +122,19 @@ export const unifiedProjects: UnifiedProject[] = [
 
 // Helper functions to filter data for specific pages
 export const getProjects = () => 
-  unifiedProjects.filter(item => ['web', 'tool'].includes(item.category));
+  projects.filter(item => ['web', 'tool'].includes(item.category));
 
 export const getGames = () => 
-  unifiedProjects.filter(item => ['game', 'puzzle', 'arcade', 'experimental'].includes(item.category));
+  projects.filter(item => ['game', 'puzzle', 'arcade', 'experimental'].includes(item.category));
 
 export const getAllProjects = () => 
-  unifiedProjects; // Return all projects including games for the projects page
+  projects; // Return all projects including games for the projects page
 
 export const getFeaturedProjects = () => 
-  unifiedProjects.filter(item => item.featured);
+  projects.filter(item => item.featured);
 
 export const getFeaturedGames = () => 
-  unifiedProjects.filter(item => item.featured && ['game', 'puzzle', 'arcade', 'experimental', 'art'].includes(item.category));
+  projects.filter(item => item.featured && ['game', 'puzzle', 'arcade', 'experimental', 'art'].includes(item.category));
 
 // Category mappings
 export const portfolioCategories = [

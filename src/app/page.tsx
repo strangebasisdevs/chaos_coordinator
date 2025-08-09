@@ -65,7 +65,7 @@ export default function Home() {
             id="projects"
             className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20"
           >
-            <div className="text-4xl mb-4">💼</div>
+            <div className="text-4xl mb-4" title="briefcase emoji">💼</div>
             <h3 className="text-2xl font-bold text-white mb-4">Projects & Interactive Experiences</h3>
             <p className="text-gray-300 mb-6">
               Explore our creative projects, web applications, interactive experiences, and digital projects
@@ -85,16 +85,16 @@ export default function Home() {
             id="streaming"
             className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20"
           >
-            <div className="text-4xl mb-4">📺</div>
+            <div className="text-4xl mb-4" title="television emoji">📺</div>
             <h3 className="text-2xl font-bold text-white mb-4">
               Content Creation
             </h3>
             <p className="text-gray-300 mb-6">
-              Follow my journey in game development, asuaging my gaming addictions,
+              Follow my journey in game development, assuaging my gaming addictions,
               creating music, videos, and whatever strikes me in the moment. You can
-              find my content on <a href="https://www.twitch.tv/strangebasis">Twitch</a>
-              and <a href="https://www.youtube.com/@strangebasis">YouTube</a>. Check
-              out my <a href="https://bsky.app/profile/strangebasis.co">BlueSky</a> for
+              find my content on <a href="https://www.twitch.tv/strangebasis" className="text-purple-400 hover:text-purple-300 font-semibold">Twitch </a>
+              and <a href="https://www.youtube.com/@strangebasis" className="text-red-400 hover:text-red-300 font-semibold">YouTube</a>. Check
+              out my <a href="https://bsky.app/profile/strangebasis.co" className="text-blue-400 hover:text-blue-300 font-semibold">BlueSky</a> for
               updates and strangebasis co news day to day.
             </p>
             <Link

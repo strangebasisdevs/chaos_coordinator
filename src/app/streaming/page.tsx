@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { StreamingPlatform, ContentSeries } from '@/types';
+import { StreamingPlatform, ContentSeries } from '@/data/projects';
+import Image from 'next/image'
 
 const platforms: StreamingPlatform[] = [
   {
@@ -7,18 +8,21 @@ const platforms: StreamingPlatform[] = [
     url: '#',
     description: 'Live coding, game development, and creative streams',
     icon: '📺',
+    alt_text: 'television emoji',
   },
   {
     name: 'YouTube',
     url: '#',
     description: 'Tutorials, dev logs, and project showcases',
     icon: '▶️',
+    alt_text: 'play button emoji',
   },
   {
     name: 'Discord',
     url: '#',
     description: 'Community discussions and live collaboration',
     icon: '💬',
+    alt_text: 'speech balloon emoji',
   },
 ];
 
@@ -30,13 +34,15 @@ const contentSeries: ContentSeries[] = [
     episodes: 12,
     category: 'dev-log',
     thumbnail: '/placeholder-devlog.jpg',
+    alt_text: 'TODO: Add thumbnail image',
   },
   {
     title: 'Creative Coding Tutorials',
     description: 'Learn to create art and interactive experiences with code.',
     episodes: 8,
     category: 'tutorial',
-    thumbnail: '/placeholder-tutorial.jpg',
+    thumbnail: '/images/streaming/creative_coding_thumbnail.png',
+    alt_text: 'lethal company spaceship monitor array',
   },
   {
     title: 'Indie Game Spotlight',
@@ -45,6 +51,7 @@ const contentSeries: ContentSeries[] = [
     episodes: 15,
     category: 'gameplay',
     thumbnail: '/placeholder-gameplay.jpg',
+    alt_text: 'TODO: Add thumbnail image',
   },
   {
     title: 'Digital Art Process',
@@ -53,6 +60,7 @@ const contentSeries: ContentSeries[] = [
     episodes: 6,
     category: 'art',
     thumbnail: '/placeholder-art-process.jpg',
+    alt_text: 'TODO: Add thumbnail image',
   },
 ];
 
@@ -131,7 +139,7 @@ export default function Streaming() {
                 className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20 hover:border-purple-400/50 transition-all group"
               >
                 <div className="text-center">
-                  <div className="text-4xl mb-4">{platform.icon}</div>
+                  <div className="text-4xl mb-4" title={platform.alt_text}>{platform.icon}</div>
                   <h3 className="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
                     {platform.name}
                   </h3>
@@ -158,11 +166,14 @@ export default function Streaming() {
                   className={`h-48 bg-gradient-to-br ${categoryColors[series.category]} flex items-center justify-center`}
                 >
                   <div className="text-center text-white">
-                    <div className="text-4xl mb-2">
-                      {series.category === 'tutorial' && '🎓'}
-                      {series.category === 'gameplay' && '🎮'}
-                      {series.category === 'dev-log' && '⚙️'}
-                      {series.category === 'art' && '🎨'}
+                    <div className="text-4xl mb-2" title={series.alt_text}>
+                      <Image
+                        src={series.thumbnail}
+                        alt={series.alt_text}
+                        width={64}
+                        height={64}
+                        className="rounded-full mx-auto"
+                      />
                     </div>
                     <span className="text-lg font-semibold">
                       {series.title}
