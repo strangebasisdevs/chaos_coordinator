@@ -5,24 +5,31 @@ import Image from 'next/image'
 const platforms: StreamingPlatform[] = [
   {
     name: 'Twitch',
-    url: '#',
+    url: 'https://www.twitch.tv/strangebasis',
     description: 'Live coding, game development, and creative streams',
     icon: '📺',
     alt_text: 'television emoji',
   },
   {
     name: 'YouTube',
-    url: '#',
+    url: 'https://www.youtube.com/@strangebasis',
     description: 'Tutorials, dev logs, and project showcases',
     icon: '▶️',
     alt_text: 'play button emoji',
   },
   {
     name: 'Discord',
-    url: '#',
+    url: 'https://discord.gg/UzRXpY7fXg',
     description: 'Community discussions and live collaboration',
     icon: '💬',
     alt_text: 'speech balloon emoji',
+  },
+  {
+    name: 'BlueSky',
+    url: 'https://bsky.app/profile/strangebasis.bsky.social',
+    description: 'Updates and behind-the-scenes content',
+    icon: '🔵',
+    alt_text: 'blue circle emoji',
   },
 ];
 
@@ -254,7 +261,7 @@ export default function Streaming() {
               Subscribe for Updates
             </Link>
             <Link
-              href="#"
+              href="https://discord.gg/UzRXpY7fXg"
               className="border border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors"
             >
               Join Discord Community

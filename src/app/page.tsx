@@ -47,13 +47,13 @@ export default function Home() {
               href="/projects"
               className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
             >
-              View Projects
+              Explore Projects
             </Link>
             <Link
-              href="/projects"
+              href="/streaming"
               className="border border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors"
             >
-              Explore Projects
+              Peruse Content
             </Link>
           </div>
         </div>
@@ -94,7 +94,7 @@ export default function Home() {
               creating music, videos, and whatever strikes me in the moment. You can
               find my content on <a href="https://www.twitch.tv/strangebasis" className="text-purple-400 hover:text-purple-300 font-semibold">Twitch </a>
               and <a href="https://www.youtube.com/@strangebasis" className="text-red-400 hover:text-red-300 font-semibold">YouTube</a>. Check
-              out my <a href="https://bsky.app/profile/strangebasis.co" className="text-blue-400 hover:text-blue-300 font-semibold">BlueSky</a> for
+              out my <a href="https://bsky.app/profile/strangebasis.bsky.social" className="text-blue-400 hover:text-blue-300 font-semibold">BlueSky</a> for
               updates and strangebasis co news day to day.
             </p>
             <Link
