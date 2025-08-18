@@ -4,7 +4,7 @@
 
 ## Project Overview
 
-Chaos Coordinator is a static website portfolio showcasing:
+Chaos Coordinator is a static website showcasing:
 
 - Company work and brand (strangebasis)
 - Web embeddable games and coding art projects

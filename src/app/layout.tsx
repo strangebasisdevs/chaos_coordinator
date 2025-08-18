@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: 'Chaos Coordinator',
-  description: 'Static portfolio showcasing company work, interactive games, and media content.',
+  description: 'Static site showcasing company work, interactive games, and media content.',
 };
 
 export default function RootLayout({

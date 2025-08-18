@@ -4,8 +4,8 @@ import { useEffect } from 'react';
 
 export default function TimeDecomposesFullscreen() {
   useEffect(() => {
-    // Redirect to the actual game
-    window.location.href = '/games/time_decomposes/index.html';
+    // Redirect to the actual project
+    window.location.href = '/submodules/time_decomposes/index.html';
   }, []);
 
   return (
@@ -15,7 +15,7 @@ export default function TimeDecomposesFullscreen() {
         <p>Loading Time Decomposes...</p>
         <p className="text-sm text-gray-400 mt-2">
           You should be redirected automatically. If not, 
-          <a href="/games/time_decomposes/index.html" className="text-purple-400 underline ml-1">
+          <a href="/submodules/time_decomposes/index.html" className="text-purple-400 underline ml-1">
             click here
           </a>
         </p>

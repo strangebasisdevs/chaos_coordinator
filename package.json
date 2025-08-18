@@ -10,7 +10,7 @@
     "format": "prettier --write .",
     "commit": "cz",
     "update-submodules": "git submodule update --remote --merge",
-    "update-games": "npm run update-submodules && echo \"✅ Game projects updated from remote repositories\""
+    "update-projects": "npm run update-submodules && echo \"✅ Project repositories updated from remote repositories\""
   },
   "config": {
     "commitizen": {

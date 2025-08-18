@@ -3,34 +3,37 @@
 import { useEffect, useRef } from 'react';
 import type { Project } from '@/data/projects';
 
-interface GameEmbedProps {
-  game: Project;
+interface ProjectEmbedProps {
+  project: Project;
   className?: string;
   showHeader?: boolean;
   previewMode?: boolean; // New prop for preview optimization
 }
 
-export default function GameEmbed({ game, className = '', showHeader = true, previewMode = false }: GameEmbedProps) {
-  const gameRef = useRef<HTMLIFrameElement>(null);
+export default function ProjectEmbed({ project, className = '', showHeader = true, previewMode = false }: ProjectEmbedProps) {
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  
+  // Helper to determine if this is a game-type project
+  const isGameProject = ['game', 'puzzle', 'arcade', 'experimental'].includes(project.category);
 
   useEffect(() => {
     // Optional: Add any initialization logic here
-    if (gameRef.current) {
+    if (iframeRef.current) {
       // Could add postMessage communication with the iframe if needed
     }
-  }, [game]);
+  }, [project]);
 
   // Don't render if no playable URL
-  if (!game.embedUrl && !game.playUrl && !game.demoUrl) {
+  if (!project.embedUrl && !project.playUrl && !project.demoUrl) {
     return (
       <div className={`bg-black/30 rounded-lg h-96 flex items-center justify-center ${className}`}>
         <div className="text-center text-gray-300">
-          <div className="text-4xl mb-4">🎮</div>
-          <p className="text-lg font-semibold">{game.title}</p>
-          <p className="text-sm mt-2">Game not yet implemented</p>
-          {game.githubUrl && game.githubUrl !== '#' && (
+          <div className="text-4xl mb-4">{isGameProject ? '🎮' : '💻'}</div>
+          <p className="text-lg font-semibold">{project.title}</p>
+          <p className="text-sm mt-2">{isGameProject ? 'Game' : 'Project'} not yet implemented</p>
+          {project.githubUrl && project.githubUrl !== '#' && (
             <a 
-              href={game.githubUrl} 
+              href={project.githubUrl} 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-purple-400 hover:text-purple-300 text-sm mt-2 inline-block"
@@ -43,7 +46,7 @@ export default function GameEmbed({ game, className = '', showHeader = true, pre
     );
   }
 
-  const embedUrl = game.embedUrl || game.playUrl || game.demoUrl;
+  const embedUrl = project.embedUrl || project.playUrl || project.demoUrl;
   
   // Add performance hints via URL parameters for preview mode
   const optimizedEmbedUrl = previewMode && embedUrl 
@@ -83,18 +86,18 @@ export default function GameEmbed({ game, className = '', showHeader = true, pre
       {showHeader && (
         <div className="bg-black/20 px-4 py-2 flex justify-between items-center">
           <div className="flex items-center gap-3">
-            <span className="text-white text-sm font-medium">{game.title}</span>
-            {game.category && (
+            <span className="text-white text-sm font-medium">{project.title}</span>
+            {project.category && (
               <span className="px-2 py-1 bg-purple-600/30 text-purple-200 text-xs rounded-full capitalize">
-                {game.category}
+                {project.category}
               </span>
             )}
           </div>
           <div className="flex items-center gap-2">
-            {game.githubUrl && game.githubUrl !== '#' && (
+            {project.githubUrl && project.githubUrl !== '#' && (
               <a
-                href={game.githubUrl}
-                target="_blank"
+                href={project.githubUrl}
+                target="_blank" 
                 rel="noopener noreferrer"
                 className="text-purple-400 hover:text-white text-xs transition-colors"
                 title="View Source"
@@ -102,18 +105,18 @@ export default function GameEmbed({ game, className = '', showHeader = true, pre
                 📝 Source
               </a>
             )}
-            {game.playUrl && game.playUrl !== '#' && (
+            {project.playUrl && project.playUrl !== '#' && (
               <a
-                href={game.playUrl}
+                href={project.playUrl}
                 className="text-purple-400 hover:text-white text-xs transition-colors"
                 title="Dedicated Page"
               >
-                🎮 Game Page
+                {isGameProject ? '🎮 Game Page' : '💻 Project Page'}
               </a>
             )}
-            {game.playUrl && game.playUrl !== '#' && (
+            {project.playUrl && project.playUrl !== '#' && (
               <a
-                href={`${game.playUrl}/fullscreen`}
+                href={`${project.playUrl}/fullscreen`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-purple-400 hover:text-white text-xs transition-colors"
@@ -126,28 +129,28 @@ export default function GameEmbed({ game, className = '', showHeader = true, pre
         </div>
       )}
       
-      {/* Preview Mode Full Game Link - positioned over iframe */}
-      {previewMode && (game.playUrl && game.playUrl !== '#') && (
+      {/* Preview Mode Full Project/Game Link - positioned over iframe */}
+      {previewMode && (project.playUrl && project.playUrl !== '#') && (
         <>
           <div className="absolute top-4 right-4 z-10">
             <a
-              href={game.playUrl}
+              href={project.playUrl}
               className="inline-flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-sm font-semibold rounded-lg transition-colors shadow-lg backdrop-blur-sm"
-              title="Open full game page"
+              title={isGameProject ? "Open full game page" : "Open full project page"}
             >
-              <span>🎮</span>
-              <span>Play Full Game</span>
+              <span>{isGameProject ? '🎮' : '💻'}</span>
+              <span>{isGameProject ? 'Play Full Game' : 'View Full Project'}</span>
               <span>→</span>
             </a>
           </div>
           
           <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-10">
             <a
-              href={game.playUrl}
+              href={project.playUrl}
               className="inline-flex items-center gap-2 px-3 py-2 bg-black/70 hover:bg-black/90 text-white text-xs font-medium rounded-full transition-colors shadow-lg backdrop-blur-sm border border-white/20"
-              title="Open full game page"
+              title={isGameProject ? "Open full game page" : "Open full project page"}
             >
-              <span>View Full Game</span>
+              <span>{isGameProject ? 'View Full Game' : 'View Full Project'}</span>
               <span>↗</span>
             </a>
           </div>
@@ -155,10 +158,10 @@ export default function GameEmbed({ game, className = '', showHeader = true, pre
       )}
       
       <iframe
-        ref={gameRef}
+        ref={iframeRef}
         src={optimizedEmbedUrl}
         className={iframeClassName}
-        title={`${game.title} - Interactive Game`}
+        title={`${project.title} - ${isGameProject ? 'Interactive Game' : 'Interactive Project'}`}
         frameBorder="0"
         allowFullScreen
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

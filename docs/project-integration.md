@@ -1,6 +1,6 @@
 # Game/Art Project Integration
 
-This document explains how interactive projects (like p5.js sketches) are integrated into the Chaos Coordinator portfolio.
+This document explains how interactive projects (like p5.js sketches) are integrated into the Chaos Coordinator website.
 
 ## Git Submodules Approach
 
@@ -8,23 +8,23 @@ We use git submodules to include external projects while maintaining their indep
 
 ### Current Submodules
 
-- `public/games/time_decomposes` - Mushroom growth simulator using L-systems and cellular automata
+- `public/submodules/time_decomposes` - Mushroom growth simulator using L-systems and cellular automata
 
 ### Manual Updates
 
 To update all submodules manually:
 
 ```bash
-npm run update-games
+npm run update-projects
 ```
 
 Or update a specific submodule:
 
 ```bash
-cd public/games/time_decomposes
+cd public/submodules/time_decomposes
 git pull origin main
 cd ../../..
-git add public/games/time_decomposes
+git add public/submodules/time_decomposes
 git commit -m "🔄 Update time_decomposes submodule"
 ```
 
@@ -41,12 +41,11 @@ The repository includes a GitHub Action (`.github/workflows/update-submodules.ym
 To add a new p5.js or game project as a submodule:
 
 ```bash
-git submodule add https://github.com/your-username/your-project.git public/games/your-project
+git submodule add https://github.com/your-username/your-project.git public/projects/your-project
 ```
 
 Then update:
-- Portfolio page (`src/app/portfolio/page.tsx`)
-- Games page (`src/app/games/page.tsx`)
+- Projects page (`src/app/projects/page.tsx`)
 - This documentation
 
 ### Webhook Setup (Optional)
@@ -68,7 +67,7 @@ For automatic updates when you push to source repositories:
 
 ```
 public/
-  games/
+  projects/
     time_decomposes/     # Git submodule
       index.html
       sketch.js
@@ -76,4 +75,4 @@ public/
       libraries/
 ```
 
-The games are accessible at `/games/project-name` in the built site.
+The projects are accessible at `/projects/project-name` in the built site.

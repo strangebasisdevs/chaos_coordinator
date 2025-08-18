@@ -2,7 +2,7 @@
 
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
-This is a static web project for the time being to get my strangebasis company brand out there and start to put my general vision and creative code out in front of the people.
+This is a static web project to get the strangebasis co brand out there and start to place my vision and creative code into the world.
 
 I welcome any contribution, but I will likely continue to make this specific for my needs as a game designer and content creator.
 
@@ -10,7 +10,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Features
 
-- **Portfolio Showcase**: Display web development projects, games, and digital art
+- **Project Showcase**: Display web development projects, games, and digital art
 - **Interactive Games**: Embeddable web games and coding art projects
 - **Streaming Content**: Showcase streaming and video creation content
 - **Company Branding**: Professional presentation of strangebasis brand
@@ -59,7 +59,7 @@ You can start editing the page by modifying `src/app/page.tsx`. The page auto-up
 
 - `npm run dev` - Starts the development server with Turbopack
 - `npm run build` - Builds the application for production
-- `npm start` - Starts the production server
+- `npx serve@latest out` - Starts the production server (not `npm start` because this is a static build)
 - `npm run lint` - Runs ESLint to check for code issues
 - `npm run format` - Formats code using Prettier
 - `npm run commit` - Uses Commitizen for conventional commits
@@ -70,8 +70,7 @@ You can start editing the page by modifying `src/app/page.tsx`. The page auto-up
 src/
 ├── app/
 │   ├── page.tsx          # Home page with hero and features
-│   ├── portfolio/        # Portfolio showcase page
-│   ├── games/           # Interactive games and art
+│   ├── projects/        # Projects showcase page
 │   └── streaming/       # Content creation and streaming
 └── types/              # TypeScript type definitions
 ```
@@ -79,8 +78,7 @@ src/
 ## Content Areas
 
 - **Home**: Landing page with company branding and navigation
-- **Portfolio**: Filterable showcase of web projects, games, and tools
-- **Games**: Interactive web games and coding art projects with embedding capability
+- **Projects**: Filterable showcase of web projects, games, and tools
 - **Streaming**: Video content, streaming schedule, and community links
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.

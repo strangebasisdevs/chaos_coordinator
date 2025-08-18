@@ -3,13 +3,13 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { getAllProjects, projectCategories, type Project } from '@/data/projects';
-import GameEmbed from '@/components/GameEmbed';
+import ProjectEmbed from '@/components/ProjectEmbed';
 
 export default function Projects() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   
-  const projects = getAllProjects(); // Get all projects including games
+  const projects = getAllProjects();
   const filteredProjects = projects.filter(
     (project) => activeCategory === 'all' || project.category === activeCategory
   );
@@ -81,8 +81,8 @@ export default function Projects() {
 
             {/* Project Embed Area - Only show iframe for interactive projects */}
             {(selectedProject.embedUrl || selectedProject.playUrl) && (
-              <GameEmbed 
-                game={selectedProject} 
+              <ProjectEmbed 
+                project={selectedProject} 
                 className="mb-4"
                 showHeader={false}
                 previewMode={true}
@@ -181,7 +181,7 @@ export default function Projects() {
                       href={project.demoUrl}
                       className="flex-1 bg-purple-600 hover:bg-purple-700 text-white text-center py-2 rounded-lg font-semibold transition-colors"
                     >
-                      Game Page
+                      Project Page
                     </Link>
                   )}
                   {project.githubUrl && project.githubUrl !== '#' && (

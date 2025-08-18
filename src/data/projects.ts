@@ -1,5 +1,5 @@
-// Centralized data source for projects and games
-// This ensures consistency across portfolio and games sections
+// Centralized data source for projects
+// This ensures consistency across projects, regardless of type
 
 export interface Project {
   id: string;
@@ -50,7 +50,7 @@ export const projects: Project[] = [
     imageAltText: 'TODO: add alt text for image',
     demoUrl: '/projects/time_decomposes',
     playUrl: '/projects/time_decomposes',
-    embedUrl: '/games/time_decomposes/index.html', // Original version preserves all UI elements
+    embedUrl: '/submodules/time_decomposes/index.html', // Original version preserves all UI elements
     githubUrl: 'https://github.com/strangebasisdevs/time_decomposes',
     controls: ['Mouse movement', 'Click to interact'],
     featured: true,
@@ -70,7 +70,7 @@ export const projects: Project[] = [
   {
     id: 'chaos_coordinator',
     title: 'Chaos Coordinator',
-    description: 'The official StrangeBasis Co Chaos Coordinator. A portfolio and company website built with Next.js and Tailwind CSS. This website.',
+    description: 'The official StrangeBasis Co Chaos Coordinator. A creative company website built with Next.js and Tailwind CSS. This website.',
     category: 'web',
     technologies: ['Next.js', 'TypeScript', 'Tailwind CSS'],
     imageUrl: '/placeholder-web.jpg',
@@ -128,7 +128,7 @@ export const getGames = () =>
   projects.filter(item => ['game', 'puzzle', 'arcade', 'experimental'].includes(item.category));
 
 export const getAllProjects = () => 
-  projects; // Return all projects including games for the projects page
+  projects; // Return all projects for the projects page
 
 export const getFeaturedProjects = () => 
   projects.filter(item => item.featured);
@@ -137,13 +137,6 @@ export const getFeaturedGames = () =>
   projects.filter(item => item.featured && ['game', 'puzzle', 'arcade', 'experimental', 'art'].includes(item.category));
 
 // Category mappings
-export const portfolioCategories = [
-  { key: 'all', label: 'All Projects' },
-  { key: 'web', label: 'Web Development' },
-  { key: 'game', label: 'Games' },
-  { key: 'art', label: 'Digital Art' },
-  { key: 'tool', label: 'Tools' },
-];
 
 export const projectCategories = [
   { key: 'all', label: 'All Projects' },

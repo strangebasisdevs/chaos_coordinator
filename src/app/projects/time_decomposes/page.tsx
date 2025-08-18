@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import GameEmbed from '@/components/GameEmbed';
+import ProjectEmbed from '@/components/ProjectEmbed';
 import { getAllProjects } from '@/data/projects';
 
 export default function TimeDecomposesProject() {
@@ -55,9 +55,9 @@ export default function TimeDecomposesProject() {
           </p>
         </div>
 
-        {/* Game Embed */}
-        <GameEmbed 
-          game={project} 
+        {/* Project Embed */}
+        <ProjectEmbed 
+          project={project} 
           className="mb-8"
           showHeader={false}
         />
