@@ -117,4 +117,14 @@ This generates a static export that can be hosted on any static hosting platform
 
 ## License
 
-This project is licensed under the GNU Affero General Public License v3.0. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the GNU AFFERO General Public License Version 3 (AGPL-3.0).
+
+I encourage you to use, modify, and share this project! Under the terms of this license:
+
+- You must disclose the source code when you share the software
+- If you modify the code, those modifications must also be released under AGPL-3.0
+- If you run a modified version on a server and allow users to interact with it remotely (e.g., through a web browser), you must also make your modified source code available to those users
+- You must include the original copyright notice and license
+- There is no warranty for the program
+
+For the full license text, see the [LICENSE](LICENSE) file in this repository or visit [GNU AGPL-3.0](https://www.gnu.org/licenses/agpl-3.0.html).
