@@ -1,3 +1,9 @@
 [submodule "public/submodules/time_decomposes"]
 	path = public/submodules/time_decomposes
 	url = https://github.com/strangebasisdevs/time_decomposes.git
+[submodule "public/submodules/strange_waves"]
+	path = public/submodules/strange_waves
+	url = https://github.com/strangebasisdevs/strange_waves.git
+[submodule "public/submodules/strange_elements"]
+	path = public/submodules/strange_elements
+	url = https://github.com/strangebasisdevs/strange_elements.git
