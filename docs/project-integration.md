@@ -9,6 +9,8 @@ We use git submodules to include external projects while maintaining their indep
 ### Current Submodules
 
 - `public/submodules/time_decomposes` - Mushroom growth simulator using L-systems and cellular automata
+- `public/submodules/strange_waves` - Interactive audio visualization with dynamic wave patterns
+- `public/submodules/strange_elements` - Physics-based elemental particle simulation
 
 ### Manual Updates
 
@@ -67,12 +69,20 @@ For automatic updates when you push to source repositories:
 
 ```
 public/
-  projects/
+  submodules/
     time_decomposes/     # Git submodule
       index.html
       sketch.js
       style.css
       libraries/
+    strange_waves/       # Git submodule
+      index.html
+      src/
+    strange_elements/    # Git submodule
+      index.html
+      sketch.js
+      elements.js
+      style.css
 ```
 
-The projects are accessible at `/projects/project-name` in the built site.
+The projects are accessible at `/projects/project-name` in the built site, with their source files hosted at `/submodules/project-name/`.

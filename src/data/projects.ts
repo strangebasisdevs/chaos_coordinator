@@ -174,7 +174,7 @@ export const projectCategories = [
   { key: 'all', label: 'All Projects' },
   { key: 'web', label: 'Web Development' },
   { key: 'game', label: 'Interactive Games' },
-  { key: 'art', label: 'Digital Art' },
+  { key: 'art', label: 'Digital Art/Visualization' },
   { key: 'tool', label: 'Development Tools' },
   { key: 'puzzle', label: 'Puzzle Games' },
   { key: 'arcade', label: 'Arcade Games' },
