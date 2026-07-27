@@ -1,6 +1,27 @@
+'use client';
+
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import type { KeyboardEvent, MouseEvent } from 'react';
 
 export default function Home() {
+  const router = useRouter();
+
+  const handleCardClick = (event: MouseEvent<HTMLElement>) => {
+    const target = event.target as HTMLElement;
+    if (target.closest('a, button')) {
+      return;
+    }
+
+    router.push('/streaming');
+  };
+
+  const handleCardKeyDown = (event: KeyboardEvent<HTMLElement>) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      router.push('/streaming');
+    }
+  };
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       {/* Navigation */}
@@ -61,29 +82,31 @@ export default function Home() {
         {/* Featured Sections */}
         <div className="grid md:grid-cols-2 gap-8 mb-16">
           {/* Projects Section */}
-          <div
+          <Link
+            href="/projects"
             id="projects"
-            className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20"
+            className="block bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20 transition-transform hover:scale-[1.01] hover:bg-white/15"
           >
             <div className="text-4xl mb-4" title="briefcase emoji">💼</div>
             <h3 className="text-2xl font-bold text-white mb-4">Projects & Interactive Experiences</h3>
             <p className="text-gray-300 mb-6">
               Explore our creative projects, web applications, interactive experiences, and digital projects
-              that showcase technical skill and artistic vision. From games to tools, all designed with 
+              that showcase technical skill and artistic vision. From games to tools, all designed with
               accessibility and user experience in mind.
             </p>
-            <Link
-              href="/projects"
-              className="text-purple-400 hover:text-purple-300 font-semibold"
-            >
+            <span className="text-purple-400 hover:text-purple-300 font-semibold">
               View All Projects →
-            </Link>
-          </div>
+            </span>
+          </Link>
 
           {/* Streaming Section */}
           <div
             id="streaming"
-            className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20"
+            role="link"
+            tabIndex={0}
+            onClick={handleCardClick}
+            onKeyDown={handleCardKeyDown}
+            className="cursor-pointer bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20 transition-transform hover:scale-[1.01] hover:bg-white/15"
           >
             <div className="text-4xl mb-4" title="television emoji">📺</div>
             <h3 className="text-2xl font-bold text-white mb-4">
@@ -92,17 +115,41 @@ export default function Home() {
             <p className="text-gray-300 mb-6">
               Follow my journey in game development, assuaging my gaming addictions,
               creating music, videos, and whatever strikes me in the moment. You can
-              find my content on <a href="https://www.twitch.tv/strangebasis" className="text-purple-400 hover:text-purple-300 font-semibold">Twitch </a>
-              and <a href="https://www.youtube.com/@strangebasis" className="text-red-400 hover:text-red-300 font-semibold">YouTube</a>. Check
-              out my <a href="https://bsky.app/profile/strangebasis.bsky.social" className="text-blue-400 hover:text-blue-300 font-semibold">BlueSky</a> for
-              updates and strangebasis co news day to day.
+              find my content on{' '}
+              <a
+                href="https://www.twitch.tv/strangebasis"
+                target="_blank"
+                rel="noreferrer"
+                className="text-purple-400 hover:text-purple-300 font-semibold"
+                onClick={(event) => event.stopPropagation()}
+              >
+                Twitch
+              </a>{' '}
+              and{' '}
+              <a
+                href="https://www.youtube.com/@strangebasis"
+                target="_blank"
+                rel="noreferrer"
+                className="text-red-400 hover:text-red-300 font-semibold"
+                onClick={(event) => event.stopPropagation()}
+              >
+                YouTube
+              </a>. Check
+              out my{' '}
+              <a
+                href="https://bsky.app/profile/strangebasis.bsky.social"
+                target="_blank"
+                rel="noreferrer"
+                className="text-blue-400 hover:text-blue-300 font-semibold"
+                onClick={(event) => event.stopPropagation()}
+              >
+                BlueSky
+              </a>{' '}
+              for updates and strangebasis co news day to day.
             </p>
-            <Link
-              href="/streaming"
-              className="text-purple-400 hover:text-purple-300 font-semibold"
-            >
+            <span className="text-purple-400 hover:text-purple-300 font-semibold">
               Watch Content →
-            </Link>
+            </span>
           </div>
         </div>
 
