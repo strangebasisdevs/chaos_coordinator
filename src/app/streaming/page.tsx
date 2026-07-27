@@ -1,6 +1,5 @@
 import Link from 'next/link';
-import { StreamingPlatform, ContentSeries } from '@/data/projects';
-import Image from 'next/image'
+import { StreamingPlatform } from '@/data/projects';
 
 const platforms: StreamingPlatform[] = [
   {
@@ -32,51 +31,6 @@ const platforms: StreamingPlatform[] = [
     alt_text: 'blue circle emoji',
   },
 ];
-
-const contentSeries: ContentSeries[] = [
-  {
-    title: 'Game Development from Scratch',
-    description:
-      'Building a complete game from concept to release, documenting every step.',
-    episodes: 12,
-    category: 'dev-log',
-    thumbnail: '/placeholder-devlog.jpg',
-    alt_text: 'TODO: Add thumbnail image',
-  },
-  {
-    title: 'Creative Coding Tutorials',
-    description: 'Learn to create art and interactive experiences with code.',
-    episodes: 8,
-    category: 'tutorial',
-    thumbnail: '/images/streaming/creative_coding_thumbnail.png',
-    alt_text: 'lethal company spaceship monitor array',
-  },
-  {
-    title: 'Indie Game Spotlight',
-    description:
-      'Playing and analyzing innovative indie games for inspiration.',
-    episodes: 15,
-    category: 'gameplay',
-    thumbnail: '/placeholder-gameplay.jpg',
-    alt_text: 'TODO: Add thumbnail image',
-  },
-  {
-    title: 'Digital Art Process',
-    description:
-      'Time-lapse and commentary on digital art creation techniques.',
-    episodes: 6,
-    category: 'art',
-    thumbnail: '/placeholder-art-process.jpg',
-    alt_text: 'TODO: Add thumbnail image',
-  },
-];
-
-const categoryColors = {
-  tutorial: 'from-green-600 to-emerald-600',
-  gameplay: 'from-blue-600 to-cyan-600',
-  'dev-log': 'from-purple-600 to-violet-600',
-  art: 'from-pink-600 to-rose-600',
-};
 
 export default function Streaming() {
   return (
@@ -153,66 +107,6 @@ export default function Streaming() {
                   <p className="text-gray-300">{platform.description}</p>
                 </div>
               </Link>
-            ))}
-          </div>
-        </div>
-
-        {/* Content Series */}
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold text-white mb-8 text-center">
-            Content Series
-          </h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            {contentSeries.map((series) => (
-              <div
-                key={series.title}
-                className="bg-white/10 backdrop-blur-lg rounded-xl overflow-hidden border border-white/20 hover:border-purple-400/50 transition-all"
-              >
-                {/* Thumbnail */}
-                <div
-                  className={`h-48 bg-gradient-to-br ${categoryColors[series.category]} flex items-center justify-center`}
-                >
-                  <div className="text-center text-white">
-                    <div className="text-4xl mb-2" title={series.alt_text}>
-                      <Image
-                        src={series.thumbnail}
-                        alt={series.alt_text}
-                        width={64}
-                        height={64}
-                        className="rounded-full mx-auto"
-                      />
-                    </div>
-                    <span className="text-lg font-semibold">
-                      {series.title}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="p-6">
-                  <div className="flex justify-between items-start mb-3">
-                    <h3 className="text-xl font-bold text-white">
-                      {series.title}
-                    </h3>
-                    <span className="px-3 py-1 bg-purple-600/30 text-purple-200 text-sm rounded-full capitalize">
-                      {series.category.replace('-', ' ')}
-                    </span>
-                  </div>
-
-                  <p className="text-gray-300 mb-4">{series.description}</p>
-
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-400">
-                      {series.episodes} episodes
-                    </span>
-                    <Link
-                      href="#"
-                      className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors"
-                    >
-                      Watch Series
-                    </Link>
-                  </div>
-                </div>
-              </div>
             ))}
           </div>
         </div>
