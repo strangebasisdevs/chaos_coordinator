@@ -42,12 +42,6 @@ export default function Home() {
           >
             Streaming
           </Link>
-          <Link
-            href="#contact"
-            className="hover:text-purple-400 transition-colors"
-          >
-            Contact
-          </Link>
         </div>
       </nav>
 
