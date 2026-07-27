@@ -72,8 +72,10 @@ export default function ProjectPageLayout({
 
           {showFullscreenButton && resolvedFullscreenHref && (
             <div className="absolute top-4 right-4 flex gap-2">
-              <Link
+              <a
                 href={resolvedFullscreenHref}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded flex items-center gap-2 transition-colors"
               >
                 <svg
@@ -91,7 +93,7 @@ export default function ProjectPageLayout({
                   />
                 </svg>
                 {fullscreenLabel}
-              </Link>
+              </a>
             </div>
           )}
         </div>
