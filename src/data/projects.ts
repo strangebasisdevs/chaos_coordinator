@@ -16,6 +16,7 @@ export interface Project {
   githubUrl?: string;
   controls?: string[];
   featured?: boolean;
+  showInPortfolio?: boolean;
 }
 
 export interface StreamingPlatform {
@@ -54,6 +55,7 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/strangebasisdevs/strange_waves',
     controls: ['Mouse movement', 'Click to interact'],
     featured: true,
+    showInPortfolio: true,
   },
   {
     id: 'strange_elements',
@@ -70,6 +72,7 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/strangebasisdevs/strange_elements',
     controls: ['Mouse to place elements', 'Number keys to select elements', 'Space to pause'],
     featured: true,
+    showInPortfolio: true,
   },
   {
     id: 'time_decomposes',
@@ -86,6 +89,7 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/strangebasisdevs/time_decomposes',
     controls: ['Mouse movement', 'Click to interact'],
     featured: true,
+    showInPortfolio: true,
   },
   // Placeholder projects for demonstration
   {
@@ -108,6 +112,7 @@ export const projects: Project[] = [
     imageUrl: '/placeholder-web.jpg',
     demoUrl: '/',
     githubUrl: '#',
+    showInPortfolio: true,
   },
   {
     id: 'game_dev_tool',
@@ -160,7 +165,7 @@ export const getGames = () =>
   projects.filter(item => ['game', 'puzzle', 'arcade', 'experimental'].includes(item.category));
 
 export const getAllProjects = () => 
-  projects; // Return all projects for the projects page
+  projects.filter((project) => project.showInPortfolio === true);
 
 export const getFeaturedProjects = () => 
   projects.filter(item => item.featured);
