@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import { StreamingPlatform } from '@/data/projects';
+import StreamStatusBanner from '@/components/StreamStatusBanner';
+import StreamScheduleGrid from '@/components/StreamScheduleGrid';
 
 const platforms: StreamingPlatform[] = [
   {
@@ -69,16 +71,9 @@ export default function Streaming() {
         {/* Live Status */}
         <div className="bg-gradient-to-r from-red-600/20 to-pink-600/20 border border-red-500/30 rounded-xl p-6 mb-12">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <div className="w-4 h-4 bg-red-500 rounded-full animate-pulse"></div>
-              <div>
-                <h3 className="text-white font-semibold">Currently Offline</h3>
-                <p className="text-gray-300">
-                  Next stream: Check social media for updates
-                </p>
-              </div>
-            </div>
+            <StreamStatusBanner />
             <div className="flex flex-col sm:flex-row gap-3">
+              For live stream alerts →
               <Link
                 href="https://www.twitch.tv/strangebasis"
                 target="_blank"
@@ -128,25 +123,10 @@ export default function Streaming() {
           <h2 className="text-3xl font-bold text-white mb-6 text-center">
             Streaming Schedule
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 text-center">
-            <div className="bg-white/5 rounded-lg p-4">
-              <h4 className="font-semibold text-purple-400 mb-2">Monday</h4>
-              <p className="text-gray-300">Game Development</p>
-              <p className="text-sm text-gray-400">7:00 PM - 9:00 PM EST</p>
-            </div>
-            <div className="bg-white/5 rounded-lg p-4">
-              <h4 className="font-semibold text-purple-400 mb-2">Wednesday</h4>
-              <p className="text-gray-300">Creative Coding</p>
-              <p className="text-sm text-gray-400">7:00 PM - 9:00 PM EST</p>
-            </div>
-            <div className="bg-white/5 rounded-lg p-4">
-              <h4 className="font-semibold text-purple-400 mb-2">Friday</h4>
-              <p className="text-gray-300">Community Playtime</p>
-              <p className="text-sm text-gray-400">8:00 PM - 10:00 PM EST</p>
-            </div>
-          </div>
+          <StreamScheduleGrid />
           <p className="text-center text-gray-400 mt-6">
-            * Schedule may vary. Follow on social media for updates!
+            * Times shown in your local timezone. Schedule may vary — follow
+            on social media for updates!
           </p>
         </div>
 
