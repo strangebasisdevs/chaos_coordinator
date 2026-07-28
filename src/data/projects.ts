@@ -9,6 +9,7 @@ export interface Project {
   category: 'web' | 'game' | 'art' | 'tool' | 'puzzle' | 'arcade' | 'experimental';
   technologies?: string[];
   imageUrl?: string;
+  thumbnailUrl?: string;
   imageAltText?: string;
   demoUrl?: string;
   playUrl?: string;
@@ -47,7 +48,8 @@ export const projects: Project[] = [
     shortDescription: 'Interactive audio visualization with dynamic wave patterns.',
     category: 'art',
     technologies: ['p5.js', 'JavaScript', 'Web Audio API', 'Canvas'],
-    imageUrl: 'TODO: add image URL',
+    imageUrl: '/images/projects/strange_waves.gif',
+    thumbnailUrl: '/images/projects/strange_waves.gif',
     imageAltText: 'Audio visualization showing colorful wave patterns',
     demoUrl: '/projects/strange_waves',
     playUrl: '/projects/strange_waves',
@@ -64,7 +66,8 @@ export const projects: Project[] = [
     shortDescription: 'Interactive physics-based elemental particle simulation.',
     category: 'art',
     technologies: ['JavaScript', 'Canvas', 'Web Workers', 'Physics Engine'],
-    imageUrl: 'TODO: add image URL',
+    imageUrl: '/images/projects/strange_elements.gif',
+    thumbnailUrl: '/images/projects/strange_elements.gif',
     imageAltText: 'Colorful particle simulation showing element interactions',
     demoUrl: '/projects/strange_elements',
     playUrl: '/projects/strange_elements',
@@ -81,7 +84,8 @@ export const projects: Project[] = [
     shortDescription: 'Interactive mushroom growth simulator using L-systems and cellular automata.',
     category: 'art',
     technologies: ['p5.js', 'JavaScript', 'L-systems', 'Cellular Automata'],
-    imageUrl: 'TODO: add image URL',
+    imageUrl: '/images/projects/time_decomposes.gif',
+    thumbnailUrl: '/images/projects/time_decomposes.gif',
     imageAltText: 'TODO: add alt text for image',
     demoUrl: '/projects/time_decomposes',
     playUrl: '/projects/time_decomposes',
@@ -109,7 +113,8 @@ export const projects: Project[] = [
     description: 'The official StrangeBasis Co Chaos Coordinator. A creative company website built with Next.js and Tailwind CSS. This website.',
     category: 'web',
     technologies: ['Next.js', 'TypeScript', 'Tailwind CSS'],
-    imageUrl: '/placeholder-web.jpg',
+    imageUrl: '/images/projects/chaos_coordinator.gif',
+    thumbnailUrl: '/images/projects/chaos_coordinator.gif',
     demoUrl: '/',
     githubUrl: '#',
     showInPortfolio: true,

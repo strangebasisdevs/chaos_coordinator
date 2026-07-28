@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState, type KeyboardEvent, type MouseEvent } from 'react';
@@ -16,6 +17,31 @@ export default function Projects() {
 
   const getProjectHref = (project: Project) =>
     project.demoUrl && project.demoUrl !== '#' ? project.demoUrl : `/projects/${project.id}`;
+
+  const getProjectThumbnail = (project: Project) => {
+    const explicit = project.thumbnailUrl || project.imageUrl;
+    if (
+      explicit &&
+      explicit !== 'TODO: add image URL' &&
+      explicit !== '#' &&
+      !explicit.startsWith('/placeholder')
+    ) {
+      return explicit;
+    }
+
+    const candidates = [
+      `/images/projects/${project.id}.gif`,
+      `/images/projects/${project.id}.png`,
+      `/images/projects/${project.id}.jpg`,
+      `/images/projects/${project.id}.jpeg`,
+      `/images/${project.id}.gif`,
+      `/images/${project.id}.png`,
+      `/images/${project.id}.jpg`,
+      `/images/${project.id}.jpeg`,
+    ];
+
+    return candidates[0] || '/images/projects/placeholder.gif';
+  };
 
   const handleProjectCardClick = (
     event: MouseEvent<HTMLElement>,
@@ -100,11 +126,16 @@ export default function Projects() {
               onKeyDown={(event) => handleProjectCardKeyDown(event, project)}
               className="cursor-pointer bg-white/10 backdrop-blur-lg rounded-xl overflow-hidden border border-white/20 hover:border-purple-400/50 transition-all"
             >
-              {/* Project Image Placeholder */}
-              <div className="h-48 bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center">
-                <span className="text-white text-lg font-semibold">
-                  {project.title}
-                </span>
+              {/* Project Thumbnail */}
+              <div className="h-48 overflow-hidden bg-slate-950">
+                <Image
+                  src={getProjectThumbnail(project)}
+                  alt={project.imageAltText || project.title}
+                  width={640}
+                  height={360}
+                  className="h-full w-full object-cover"
+                  unoptimized
+                />
               </div>
 
               <div className="p-6">
