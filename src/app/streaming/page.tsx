@@ -78,12 +78,24 @@ export default function Streaming() {
                 </p>
               </div>
             </div>
-            <Link
-              href="#"
-              className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors"
-            >
-              Get Notifications
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Link
+                href="https://www.twitch.tv/strangebasis"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors text-center"
+              >
+                Follow on Twitch for Alerts
+              </Link>
+              <Link
+                href="https://www.youtube.com/@strangebasis?sub_confirmation=1"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors text-center"
+              >
+                Subscribe & Hit the Bell (YouTube)
+              </Link>
+            </div>
           </div>
         </div>
 
@@ -149,10 +161,12 @@ export default function Streaming() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="#"
+              href="https://bsky.app/profile/strangebasis.bsky.social"
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
             >
-              Subscribe for Updates
+              Follow for Updates
             </Link>
             <Link
               href="https://discord.gg/UzRXpY7fXg"
