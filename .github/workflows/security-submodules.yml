@@ -1,0 +1,141 @@
+name: Security - Submodules
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '47 3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  centralized-semgrep:
+    name: Centralized Semgrep workflow
+    uses: strangebasisdevs/strange_security/.github/workflows/semgrep.yml@main
+    permissions:
+      contents: read
+      security-events: write
+
+  centralized-trivy:
+    name: Centralized Trivy workflow
+    uses: strangebasisdevs/strange_security/.github/workflows/trivy.yml@main
+    permissions:
+      contents: read
+      security-events: write
+
+  semgrep-submodules:
+    name: Semgrep (${{ matrix.name }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Add future weblets here with their .gitmodules path and repository.
+          - name: time_decomposes
+            path: public/submodules/time_decomposes
+            repository: strangebasisdevs/time_decomposes
+          - name: strange_waves
+            path: public/submodules/strange_waves
+            repository: strangebasisdevs/strange_waves
+          - name: strange_elements
+            path: public/submodules/strange_elements
+            repository: strangebasisdevs/strange_elements
+    steps:
+      - name: Checkout main repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          path: main
+
+      - name: Resolve submodule commit
+        id: submodule-ref
+        run: |
+          sha="$(git -C main ls-tree HEAD "${{ matrix.path }}" | awk '{print $3}')"
+          if [ -z "$sha" ]; then
+            echo "Unable to resolve submodule commit for ${{ matrix.path }}" >&2
+            exit 1
+          fi
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
+          rm -rf main
+
+      - name: Checkout submodule repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: ${{ matrix.repository }}
+          ref: ${{ steps.submodule-ref.outputs.sha }}
+
+      - name: Run Semgrep
+        uses: returntocorp/semgrep-action@713efdd345f3035192eaa63f56867b88e63e4e5d # v1
+        with:
+          config: p/default
+          generateSarif: '1'
+
+      - name: Upload SARIF results
+        if: always()
+        uses: github/codeql-action/upload-sarif@cdf488f595d80d6e07e03d4674febd5ab45fa938 # v4.37.9
+        with:
+          sarif_file: semgrep.sarif
+          category: semgrep-${{ matrix.name }}
+
+  trivy-submodules:
+    name: Trivy (${{ matrix.name }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Add future weblets here with their .gitmodules path and repository.
+          - name: time_decomposes
+            path: public/submodules/time_decomposes
+            repository: strangebasisdevs/time_decomposes
+          - name: strange_waves
+            path: public/submodules/strange_waves
+            repository: strangebasisdevs/strange_waves
+          - name: strange_elements
+            path: public/submodules/strange_elements
+            repository: strangebasisdevs/strange_elements
+    steps:
+      - name: Checkout main repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          path: main
+
+      - name: Resolve submodule commit
+        id: submodule-ref
+        run: |
+          sha="$(git -C main ls-tree HEAD "${{ matrix.path }}" | awk '{print $3}')"
+          if [ -z "$sha" ]; then
+            echo "Unable to resolve submodule commit for ${{ matrix.path }}" >&2
+            exit 1
+          fi
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
+          rm -rf main
+
+      - name: Checkout submodule repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: ${{ matrix.repository }}
+          ref: ${{ steps.submodule-ref.outputs.sha }}
+
+      - name: Run Trivy
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          scan-type: fs
+          scan-ref: .
+          scanners: vuln,secret
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          format: sarif
+          output: trivy-results.sarif
+          exit-code: '1'
+
+      - name: Upload SARIF results
+        if: always()
+        uses: github/codeql-action/upload-sarif@cdf488f595d80d6e07e03d4674febd5ab45fa938 # v4.37.9
+        with:
+          sarif_file: trivy-results.sarif
+          category: trivy-${{ matrix.name }}
