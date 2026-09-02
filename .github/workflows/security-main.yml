@@ -1,0 +1,29 @@
+name: Security - Main Repository
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '17 3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  semgrep:
+    name: Semgrep
+    uses: strangebasisdevs/strange_security/.github/workflows/semgrep.yml@main
+    permissions:
+      contents: read
+      security-events: write
+
+  trivy:
+    name: Trivy
+    uses: strangebasisdevs/strange_security/.github/workflows/trivy.yml@main
+    permissions:
+      contents: read
+      security-events: write
