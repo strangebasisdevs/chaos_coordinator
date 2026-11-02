@@ -30,13 +30,9 @@ git add public/submodules/time_decomposes
 git commit -m "🔄 Update time_decomposes submodule"
 ```
 
-### Automatic Updates
+### Updating Through Pull Requests
 
-The repository includes a GitHub Action (`.github/workflows/update-submodules.yml`) that:
-
-1. Runs daily at 2 AM UTC
-2. Can be manually triggered
-3. Can be triggered via webhook when source repositories update
+Submodule updates are made locally (`npm run update-submodules`) and land through a pull request; no workflow pushes to `main`. Dependabot's `gitsubmodule` entry (`.github/dependabot.yml`) opens those pull requests weekly.
 
 ### Adding New Projects
 

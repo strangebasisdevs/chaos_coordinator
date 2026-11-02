@@ -66,6 +66,10 @@ You can start editing the page by modifying `src/app/page.tsx`. The page auto-up
 - `npm run format` - Formats code using Prettier
 - `npm run commit` - Uses Commitizen for conventional commits
 
+### Updating the embedded projects
+
+The embedded projects (`time_decomposes`, `strange_waves` and `strange_elements`) are Git submodules under `public/submodules/`. Submodule updates are made locally with `npm run update-submodules` and land through a pull request. Dependabot's `gitsubmodule` entry opens those pull requests weekly.
+
 ## Project Structure
 
 ```
