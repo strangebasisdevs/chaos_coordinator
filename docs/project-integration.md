@@ -26,17 +26,14 @@ Or update a specific submodule:
 cd public/submodules/time_decomposes
 git pull origin main
 cd ../../..
+git switch -c chore/update-submodules
 git add public/submodules/time_decomposes
 git commit -m "🔄 Update time_decomposes submodule"
 ```
 
-### Automatic Updates
+### Updating Through Pull Requests
 
-The repository includes a GitHub Action (`.github/workflows/update-submodules.yml`) that:
-
-1. Runs daily at 2 AM UTC
-2. Can be manually triggered
-3. Can be triggered via webhook when source repositories update
+Submodule updates are made locally (`npm run update-submodules`) and land through a pull request from a branch; no workflow pushes to `main`. Dependabot's `gitsubmodule` entry (`.github/dependabot.yml`) opens those pull requests weekly.
 
 ### Adding New Projects
 
@@ -50,13 +47,9 @@ Then update:
 - Projects page (`src/app/projects/page.tsx`)
 - This documentation
 
-### Webhook Setup (Optional)
+### Webhook Setup
 
-For automatic updates when you push to source repositories:
-
-1. Add the webhook URL `https://your-domain.com/api/webhook/github` to your source repository
-2. Set the webhook to trigger on "push" events
-3. Optionally add a webhook secret for security
+The push webhook no longer triggers any update, because submodule bumps now arrive as pull requests (see above). No webhook setup is needed.
 
 ### Alternative Approaches Considered
 
